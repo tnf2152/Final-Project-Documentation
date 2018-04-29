@@ -1,4 +1,7 @@
 # Raspberry Pi Temperature Sensor
+
+![tempsensor](TemperatureSensor.jpg)
+
 ### Why I Chose a Temperature Sensor
 I was searching for a Raspberry Pi related project to do because I had wanted to get a Raspberry Pi for a while now and this was a 
 good excuse to buy one. When I was searching for a project to do, most of them were either really expensive because they involved Amazon Cloud services to use. These require subscriptions. Other projects involved hardware that would be either too expensive, or too complex to create in a short amount of time. The temperature sensor is a project that is not that expensive or difficult, and could be integrated into a much bigger project.
@@ -24,12 +27,18 @@ The first step to make sure the sensor worked was to edit the boot config file w
 #### My Problems
 It was at this point that I thought that there was a major problem. In that directory, there should be something similar to, "28-000007602ffa" which would be the sensor. My directory was similar, but not close enough to the example. I don't have the exact numbers memorized, but it was something like 00-00000052ffa. I felt like it had too many zeroes, so something must have went wrong. Now usually wen you enter that directory, "xx-xxxffa" there would be a file called w1_slave. w1_slave is the sensor data. Unfortunately, mine did not have that file so I had to figure out what was wrong. I could rule out software isssues since the modules came up fine. My next thought was that I had a bad sensor. I bought a new sensor, plugged it in, and it still had the same issues. The end of the wires on both of the sensors were a little short, so I had to strip them a little bit. I had issues getting the sensor wires into the breadboard since they would bend so much. Luckily, the breadboard wires that I got had breadboard adapters on them, instead of having the wire soldered like other breadboard wires. I ripped off a few of the adapters off of the breadboard wires and used a crimper to attach them to the sensor wires. These adapters had long straight connectors so they stayed put. I went through and the w1_slave file came up, so it turns out that the problem was the ends of the sensors weren't communicating with the breadboard properly.
 
+![Without Adapter](WithoutAdapter.jpg)
+
+![With Adapter](WithAdapter.jpg)
+
 #### Coding
 Once the w1_slave file was there, I did, "cat w1_slave" to see its contents. It contains two lines of text, the first line ends with YES, which means that the sensor is working. The second line ends with t=xxxxx which is the temperature data. Once I knew that it was working, it was time to work on the code. 
 
 To summarize the code: I had to import os, glob, time, and ctime. I had to point out the modules that were being used (w1_gpio, w1_therm.) Then I had to point out the directory, device folder, and the device file. I had to define a raw temperature read, then make it so the temperature would be written as both degrees celcius and fahrenheit. Last thing to do was print out both of those values, with timestamps.
 
 [The full python code can be found here.](../blob/master/thermometer_sensor.py)
+
+![It works](workingsensor.png)
 
 ### What I could have done different/ How it can be improved
 There were a couple of things I could have done that would have probably lessen the cost, but taken more time. There were ways that I would've made the T-cobbler unnecessary. The other thing I saw was that other people have made their own temperature sensors. However, these temperature sensors were not waterproof. 
