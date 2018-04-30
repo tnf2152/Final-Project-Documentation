@@ -34,9 +34,9 @@ It was at this point that I thought that there was a major problem. In that dire
 #### Coding
 Once the w1_slave file was there, I did, "cat w1_slave" to see its contents. It contains two lines of text, the first line ends with YES, which means that the sensor is working. The second line ends with t=xxxxx which is the temperature data. Once I knew that it was working, it was time to work on the code. 
 
-To summarize the code: I had to import os, glob, time, and ctime. I had to point out the modules that were being used (w1_gpio, w1_therm.) Then I had to point out the directory, device folder, and the device file. I had to define a raw temperature read, then make it so the temperature would be written as both degrees celcius and fahrenheit. Last thing to do was print out both of those values, with timestamps.
+To summarize the code: I had to import os, glob, time, and ctime. I had to point out the modules that were being used (w1_gpio, w1_therm.) Then I had to point out the directory, device folder, and the device file. I had to define a raw temperature read, then make it so the temperature would be written as both degrees celcius and fahrenheit. I had to make sure that there was a timeout for the code, or it would just run continuously. I had it so it ran the code every 5 minutes (300 seconds) Last thing to do was print out both of those values, with timestamps.
 
-[The full python code can be found here.](../blob/master/thermometer_sensor.py)
+[The full python code can be found here.](../master/thermometer_sensor.py)
 
 ![It works](workingsensor.png)
 
